@@ -86,8 +86,3 @@ pheatmap::pheatmap(
   treeheight_col = 0,
   color = viridis::viridis(100)
 )  
-
-
-## --------------------------------------------------------------------------------------------------------
-saveRDS(merged, "U19_Krauter_atlases_cca_integrated_20250908.rds")
-
