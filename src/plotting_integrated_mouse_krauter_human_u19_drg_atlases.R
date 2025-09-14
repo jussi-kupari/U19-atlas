@@ -23,6 +23,22 @@ DimPlot(
 
 
 ## --------------------------------------------------------------------------------------------------------
+# Split UMAP by Study
+
+# First combine Human and Mouse study identities
+merged@meta.data$Study <- 
+  with(merged@meta.data, ifelse(Species == "Human", Study, dataset))
+
+DimPlot(
+  merged,
+  reduction = "umap",
+  group.by = c("Study"),
+  split.by = "Species",
+  shuffle = TRUE
+) 
+
+
+## --------------------------------------------------------------------------------------------------------
 # Split UMAP by CellType
 DimPlot(
   merged,
