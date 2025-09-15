@@ -80,12 +80,47 @@ wide_data <- reshape(mean_scores,
                      timevar = "name",
                      v.names = "score")
 
+
+
+
+
 names(wide_data) <- gsub("^score\\.", "", names(wide_data))
 wide_data$temp_id <- NULL
 
 rownames(wide_data) <- wide_data$celltype
 wide_data$celltype <- NULL
+
+mouse_celltype_order <- c(
+  "Ab.RA.LTMR",
+  "Ab.SA.Field",
+  "Ad.LTMR",
+  "ATF3",
+  "C.LTMR",
+  "NP1",
+  "NP2",
+  "Mrgprb4",
+  "NP3",
+  "PEP1.1.a",
+  "PEP1.1.b",
+  "PEP1.2",
+  "PEP1.3.a",
+  "PEP1.3.b",
+  "PEP1.4",
+  "PEP2.1",
+  "PEP2.2",
+  "PEP3.1",
+  "PEP3.2",
+  "Proprioceptor",
+  "Rxfp1",
+  "TRPM8.1",
+  "TRPM8.2"
+)
+
+wide_data <- wide_data[, mouse_celltype_order]
+
 pollock_matrix <- as.matrix(wide_data)
+colnames(pollock_matrix) <- gsub("NP2", "NP2.1", colnames(pollock_matrix))
+colnames(pollock_matrix) <- gsub("Mrgprb4", "NP2.2.Mrgprb4", colnames(pollock_matrix))
 
 # Order rows to approx match mouse cell types
 rows_order <- c(
@@ -98,10 +133,10 @@ rows_order <- c(
   "C-NP.MRGPRX1/GFRA2" ,
   "C-NP.MRGPRX1/MRGPRX4",
   "C-NP.SST",
+  "C-PEP.TAC1/CACNG5",
   "A-LTMR.TAC3",
   "C-PEP.ADORA2B",
   "C-PEP.TAC1/CHRNA3",
-  "C-PEP.TAC1/CACNG5",
   "A-PEP.CHRNA7/SLC18A3",
   "A-PEP.NTRK3/S100A16",
   "A-PEP.KIT",
