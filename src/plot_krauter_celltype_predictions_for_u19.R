@@ -69,8 +69,6 @@ prediction_violins <-
   )
 
 
-
-
 # Reshape data to wide matrix
 mean_scores <- aggregate(score ~ celltype + name, data = meta_long, FUN = mean)
 mean_scores$temp_id <- seq_len(nrow(mean_scores))
@@ -79,9 +77,6 @@ wide_data <- reshape(mean_scores,
                      idvar = "celltype",
                      timevar = "name",
                      v.names = "score")
-
-
-
 
 
 names(wide_data) <- gsub("^score\\.", "", names(wide_data))
