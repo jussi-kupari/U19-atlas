@@ -26,9 +26,9 @@ DimPlot(
 # Split UMAP by Study
 
 # First combine Human and Mouse study identities
-merged@meta.data$Study <- 
-  with(merged@meta.data, ifelse(Species == "Human", Study, dataset))
-
+merged@meta.data <-
+  transform(merged@meta.data, 
+            Study = ifelse(Species == "Human", Study, dataset))
 DimPlot(
   merged,
   reduction = "umap",
