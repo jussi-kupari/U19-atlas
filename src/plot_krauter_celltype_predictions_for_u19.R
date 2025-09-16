@@ -27,6 +27,10 @@ meta <- meta[, c("celltype", names(meta)[5:length(names(meta))])]
 names(meta) <- sub("\\.$", "", names(meta))
 names(meta) <- sub("probability\\.", "", names(meta))
 
+names(meta) <- gsub("NP2", "NP2.1", names(meta))
+names(meta) <- gsub("Mrgprb4", "NP2.2.Mrgprb4", names(meta))
+
+
 # Add row ID for reshape
 meta$id <- seq_len(nrow(meta))
 
@@ -92,8 +96,8 @@ mouse_celltype_order <- c(
   "ATF3",
   "C.LTMR",
   "NP1",
-  "NP2",
-  "Mrgprb4",
+  "NP2.1",
+  "NP2.2.Mrgprb4",
   "NP3",
   "PEP1.1.a",
   "PEP1.1.b",
@@ -114,8 +118,6 @@ mouse_celltype_order <- c(
 wide_data <- wide_data[, mouse_celltype_order]
 
 pollock_matrix <- as.matrix(wide_data)
-colnames(pollock_matrix) <- gsub("NP2", "NP2.1", colnames(pollock_matrix))
-colnames(pollock_matrix) <- gsub("Mrgprb4", "NP2.2.Mrgprb4", colnames(pollock_matrix))
 
 # Order rows to approx match mouse cell types
 rows_order <- c(
