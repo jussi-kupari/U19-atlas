@@ -29,6 +29,7 @@ DimPlot(
 merged@meta.data <-
   transform(merged@meta.data, 
             Study = ifelse(Species == "Human", Study, dataset))
+
 DimPlot(
   merged,
   reduction = "umap",
@@ -36,7 +37,6 @@ DimPlot(
   split.by = "Species",
   shuffle = TRUE
 ) 
-
 
 ## --------------------------------------------------------------------------------------------------------
 # Split UMAP by CellType
