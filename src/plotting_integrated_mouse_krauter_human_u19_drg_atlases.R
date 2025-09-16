@@ -40,6 +40,16 @@ DimPlot(
 
 ## --------------------------------------------------------------------------------------------------------
 # Split UMAP by CellType
+
+# First rename mouse NP2 and Mrgprb4 cells
+merged@meta.data <-
+  transform(merged@meta.data,
+            CellType = ifelse(
+              CellType == "Mouse-NP2",
+              "Mouse-NP2.1",
+              ifelse(CellType == "Mouse-Mrgprb4", "Mouse-NP2.2.Mrgprb4", CellType)
+            ))
+
 DimPlot(
   merged,
   reduction = "umap",
